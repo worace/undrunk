@@ -12,7 +12,7 @@
 #import "UDFoursquareClient.h"
 
 @interface UDVenueFinderTableViewController ()
-
+@property (nonatomic, strong) NSArray *venues;
 @end
 
 @implementation UDVenueFinderTableViewController
@@ -21,7 +21,8 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        self.venues = @[];
+//        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"defaultCell"];
     }
     return self;
 }
@@ -42,21 +43,12 @@
 }
 
 - (void)loadVenues {
-    NSArray *venues = [[UDFoursquareClient client] venuesForLocation:[self userLocation]];
-    NSLog(@"got %d venues", [venues count]);
+    self.venues = [[UDFoursquareClient client] venuesForLocation:[self userLocation]];
+    [self.tableView reloadData];
 }
 
 - (CLLocation *)userLocation {
-    //38.931783, -77.028438
-//    CLLocationDegrees *lat = 38.931783;
-//    CLLocationDegrees *long = -77.028438;
-    return [[CLLocation alloc] initWithLatitude:38.931783 longitude:77.028438];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [[CLLocation alloc] initWithLatitude:38.931783 longitude:-77.028438];
 }
 
 #pragma mark - Table view data source
@@ -68,67 +60,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [self.venues count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.textLabel.text = [self.venues objectAtIndex:indexPath.row][@"name"];
     
     return cell;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
