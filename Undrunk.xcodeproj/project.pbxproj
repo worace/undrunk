@@ -19,6 +19,7 @@
 		BB5BCE6319C7CF2A00835E1C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5BCE4B19C7CF2A00835E1C /* UIKit.framework */; };
 		BB5BCE6B19C7CF2A00835E1C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCE6919C7CF2A00835E1C /* InfoPlist.strings */; };
 		BB5BCE6D19C7CF2A00835E1C /* UndrunkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE6C19C7CF2A00835E1C /* UndrunkTests.m */; };
+		BB5BCE7719C7CF4600835E1C /* configuration.example.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCE7619C7CF4600835E1C /* configuration.example.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		BB5BCE6819C7CF2A00835E1C /* UndrunkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UndrunkTests-Info.plist"; sourceTree = "<group>"; };
 		BB5BCE6A19C7CF2A00835E1C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB5BCE6C19C7CF2A00835E1C /* UndrunkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UndrunkTests.m; sourceTree = "<group>"; };
+		BB5BCE7619C7CF4600835E1C /* configuration.example.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.example.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		BB5BCE3B19C7CF2A00835E1C = {
 			isa = PBXGroup;
 			children = (
+				BB5BCE7619C7CF4600835E1C /* configuration.example.plist */,
 				BB5BCE4D19C7CF2A00835E1C /* Undrunk */,
 				BB5BCE6619C7CF2A00835E1C /* UndrunkTests */,
 				BB5BCE4619C7CF2A00835E1C /* Frameworks */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5BCE7719C7CF4600835E1C /* configuration.example.plist in Resources */,
 				BB5BCE5219C7CF2A00835E1C /* InfoPlist.strings in Resources */,
 				BB5BCE5A19C7CF2A00835E1C /* Images.xcassets in Resources */,
 			);
