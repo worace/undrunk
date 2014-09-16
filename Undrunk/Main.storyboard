@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - HI-->
+        <!--Venue Finder Table View Controller - Nearby Venues-->
         <scene sceneID="MdF-eT-c8F">
             <objects>
-                <tableViewController id="6gc-gW-eZT" sceneMemberID="viewController">
+                <tableViewController id="6gc-gW-eZT" customClass="UDVenueFinderTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="wux-ro-g3F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                             <outlet property="delegate" destination="6gc-gW-eZT" id="ThB-Rw-kOz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="HI" id="1PF-yh-e2a"/>
+                    <navigationItem key="navigationItem" title="Nearby Venues" id="1PF-yh-e2a"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdo-PB-5Qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
