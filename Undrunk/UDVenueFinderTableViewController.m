@@ -10,6 +10,7 @@
 #import "SVProgressHUD.h"
 #import <CoreLocation/CoreLocation.h>
 #import "UDFoursquareClient.h"
+#import "UDVenueTableViewController.h"
 
 @interface UDVenueFinderTableViewController ()
 @property (nonatomic, strong) NSArray *venues;
@@ -70,6 +71,14 @@
     cell.textLabel.text = [self.venues objectAtIndex:indexPath.row][@"name"];
     
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"selectVenue"]) {
+        NSDictionary *venue = [self.venues objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        UDVenueTableViewController *dest = segue.destinationViewController;
+        dest.foursquareVenue = venue;
+    }
 }
 
 @end

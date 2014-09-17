@@ -8,21 +8,23 @@
 
 #import "UDAppDelegate.h"
 #import "UDFoursquareClient.h"
+#import "UDUntappdClient.h"
 
 @implementation UDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self configureFouresquare];
+    [self configureClients];
     return YES;
 }
 
-- (void)configureFouresquare {
+- (void)configureClients {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"configuration" ofType:@"plist"];
     NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     [UDFoursquareClient client].clientID = configuration[@"FOURSQUARE_CLIENT_ID"];
     [UDFoursquareClient client].clientSecret = configuration[@"FOURSQUARE_CLIENT_SECRET"];
+    [UDUntappdClient client].clientID = configuration[@"UNTAPPD_CLIENT_ID"];
+    [UDUntappdClient client].clientSecret = configuration[@"UNTAPPD_CLIENT_SECRET"];
 }
-
 
 @end

@@ -26,6 +26,8 @@
 		BB5BCE8319C7D25000835E1C /* UDVenueFinderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8219C7D25000835E1C /* UDVenueFinderTableViewController.m */; };
 		BB5BCE8619C7D31E00835E1C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = BB5BCE8519C7D31E00835E1C /* Podfile */; };
 		BB5BCE8919C7D4E100835E1C /* UDFoursquareClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8819C7D4E100835E1C /* UDFoursquareClient.m */; };
+		BB5BCE8C19C7E7D000835E1C /* UDUntappdClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */; };
+		BB5BCE8F19C7E8CB00835E1C /* UDVenueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		BB5BCE8519C7D31E00835E1C /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		BB5BCE8719C7D4E100835E1C /* UDFoursquareClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDFoursquareClient.h; sourceTree = "<group>"; };
 		BB5BCE8819C7D4E100835E1C /* UDFoursquareClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDFoursquareClient.m; sourceTree = "<group>"; };
+		BB5BCE8A19C7E7D000835E1C /* UDUntappdClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDUntappdClient.h; sourceTree = "<group>"; };
+		BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDUntappdClient.m; sourceTree = "<group>"; };
+		BB5BCE8D19C7E8CB00835E1C /* UDVenueTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDVenueTableViewController.h; sourceTree = "<group>"; };
+		BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDVenueTableViewController.m; sourceTree = "<group>"; };
 		FF398B1EB43B4A2BAD338ED5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +134,8 @@
 		BB5BCE4D19C7CF2A00835E1C /* Undrunk */ = {
 			isa = PBXGroup;
 			children = (
+				BB5BCE8A19C7E7D000835E1C /* UDUntappdClient.h */,
+				BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */,
 				BB5BCE8719C7D4E100835E1C /* UDFoursquareClient.h */,
 				BB5BCE8819C7D4E100835E1C /* UDFoursquareClient.m */,
 				BB5BCE5619C7CF2A00835E1C /* UDAppDelegate.h */,
@@ -137,6 +145,8 @@
 				BB5BCE7C19C7D0D300835E1C /* Main.storyboard */,
 				BB5BCE8119C7D25000835E1C /* UDVenueFinderTableViewController.h */,
 				BB5BCE8219C7D25000835E1C /* UDVenueFinderTableViewController.m */,
+				BB5BCE8D19C7E8CB00835E1C /* UDVenueTableViewController.h */,
+				BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */,
 			);
 			path = Undrunk;
 			sourceTree = "<group>";
@@ -307,10 +317,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5BCE8F19C7E8CB00835E1C /* UDVenueTableViewController.m in Sources */,
 				BB5BCE8919C7D4E100835E1C /* UDFoursquareClient.m in Sources */,
 				BB5BCE8319C7D25000835E1C /* UDVenueFinderTableViewController.m in Sources */,
 				BB5BCE5419C7CF2A00835E1C /* main.m in Sources */,
 				BB5BCE5819C7CF2A00835E1C /* UDAppDelegate.m in Sources */,
+				BB5BCE8C19C7E7D000835E1C /* UDUntappdClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
