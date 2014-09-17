@@ -51,6 +51,28 @@
     }
 }
 
+- (NSArray *)uniqueBeersForUser:(NSString *)userName {
+    NSLog(@"will fetch user beers from url %@", [self queryURLForUserDistinctBeers:userName withOffset:0]);
+    NSMutableArray *beers = [[NSMutableArray alloc] init];
+    BOOL reachedEnd = NO;
+    int iteration = 0;
+
+    while (!reachedEnd) {
+        NSURL *url = [self queryURLForUserDistinctBeers:userName withOffset:(iteration*25)];
+        NSLog(@"fetching beers for jimmy on iteration %d wiht URL %@", iteration, url);
+        NSDictionary *data = [self fetchURLFromUntappdApi:url];
+        NSArray *newBeers;
+        if (([data count] > 0) && ([data[@"response"] count] > 0)) newBeers = data[@"response"][@"beers"][@"items"];
+        NSLog(@" new beers! %@", newBeers);
+        [beers addObjectsFromArray:newBeers];
+        NSLog(@"adding %d newBeers", [newBeers count]);
+        if ([newBeers count] < 25) reachedEnd = YES;
+        if (iteration > 5) reachedEnd = YES;
+        iteration ++;
+    }
+    return [beers copy];
+}
+
 - (NSArray *)recentBeersForUntappdVenue:(NSString *)venueID {
     // Get N batches of most recent checkins by paging through with max_id
     // param which is the most recent checkin that will be returned
@@ -80,7 +102,7 @@
 }
 
 - (NSString *)untappdURLBase {
-    return @"http://api.untappd.com/v4";
+    return @"https://api.untappd.com/v4";
 }
 
 - (NSURL *)queryURLForFoursquareVenueID:(NSString *)venueID {
@@ -97,6 +119,11 @@
         NSString *url = [NSString stringWithFormat:@"%@/venue/checkins/%@?client_id=%@&client_secret=%@", [self untappdURLBase], venueID, self.clientID, self.clientSecret];
         return [NSURL URLWithString:url];
     }
+}
+
+- (NSURL *)queryURLForUserDistinctBeers:(NSString *)username withOffset:(int)offset {
+    NSString *url = [NSString stringWithFormat:@"%@/user/beers/%@?client_id=%@&client_secret=%@&offset=%d", [self untappdURLBase], username, self.clientID, self.clientSecret, offset];
+    return  [NSURL URLWithString:url];
 }
 
 

@@ -15,4 +15,5 @@
 +(instancetype)client;
 - (NSDictionary *)untappdVenueForFoursquareID:(NSString *)id;
 - (NSArray *)recentBeersForUntappdVenue:(NSString *)venueID;
+- (NSArray *)uniqueBeersForUser:(NSString *)userName;
 @end

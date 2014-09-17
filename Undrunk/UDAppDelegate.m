@@ -15,6 +15,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self configureClients];
+    [self fetchUserBeersAsync];
     return YES;
 }
 
@@ -25,6 +26,13 @@
     [UDFoursquareClient client].clientSecret = configuration[@"FOURSQUARE_CLIENT_SECRET"];
     [UDUntappdClient client].clientID = configuration[@"UNTAPPD_CLIENT_ID"];
     [UDUntappdClient client].clientSecret = configuration[@"UNTAPPD_CLIENT_SECRET"];
+}
+
+- (void)fetchUserBeersAsync {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSArray *beers = [[UDUntappdClient client] uniqueBeersForUser:@"jimmyburdette"];
+        NSLog(@"got %d beers for jimmy", [beers count]);
+    });
 }
 
 @end
