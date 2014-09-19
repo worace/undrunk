@@ -10,6 +10,7 @@
 #import "UDUntappdClient.h"
 #import "SVProgressHUD.h"
 #import "UDUserDataStore.h"
+#import "UDCredentialStore.h"
 
 @interface UDVenueTableViewController ()
 @property (nonatomic, strong)NSDictionary *untappdVenue;
@@ -77,7 +78,11 @@
     [new addObjectsFromArray:userIds];
     NSSet *uniquesById = [[NSSet alloc] initWithArray:new];
     NSLog(@"uniques count by id %d", [uniquesById count]);
+}
 
-
+- (IBAction)logOut:(id)sender {
+    [[[UDCredentialStore alloc] init] clearSavedCredentials];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    NSLog(@"log otu");
 }
 @end

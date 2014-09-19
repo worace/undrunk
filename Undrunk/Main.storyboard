@@ -30,13 +30,15 @@
                             <outlet property="delegate" destination="6gc-gW-eZT" id="ThB-Rw-kOz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Nearby Venues" id="1PF-yh-e2a"/>
+                    <navigationItem key="navigationItem" title="Nearby Venues" id="1PF-yh-e2a">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="koG-wX-8je"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdo-PB-5Qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="525" y="-29"/>
         </scene>
-        <!--Venue Table View Controller-->
+        <!--Venue Table View Controller - Try these new beers!-->
         <scene sceneID="bW2-xy-95E">
             <objects>
                 <tableViewController id="s8L-wL-MtU" customClass="UDVenueTableViewController" sceneMemberID="viewController">
@@ -59,7 +61,13 @@
                             <outlet property="delegate" destination="s8L-wL-MtU" id="5gh-bz-pRr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="AJd-ea-hyq"/>
+                    <navigationItem key="navigationItem" title="Try these new beers!" id="AJd-ea-hyq">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="6Yf-03-b0g">
+                            <connections>
+                                <action selector="logOut:" destination="s8L-wL-MtU" id="Dz6-XC-1By"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOA-pR-peM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
