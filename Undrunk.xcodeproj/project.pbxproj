@@ -29,6 +29,7 @@
 		BB5BCE8C19C7E7D000835E1C /* UDUntappdClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */; };
 		BB5BCE8F19C7E8CB00835E1C /* UDVenueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */; };
 		BB5BCE9819CBBB3700835E1C /* UDCredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE9719CBBB3700835E1C /* UDCredentialStore.m */; };
+		BB5BCE9B19CBCC9800835E1C /* UDUserDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE9A19CBCC9800835E1C /* UDUserDataStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDVenueTableViewController.m; sourceTree = "<group>"; };
 		BB5BCE9619CBBB3700835E1C /* UDCredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDCredentialStore.h; sourceTree = "<group>"; };
 		BB5BCE9719CBBB3700835E1C /* UDCredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDCredentialStore.m; sourceTree = "<group>"; };
+		BB5BCE9919CBCC9800835E1C /* UDUserDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDUserDataStore.h; sourceTree = "<group>"; };
+		BB5BCE9A19CBCC9800835E1C /* UDUserDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDUserDataStore.m; sourceTree = "<group>"; };
 		FF398B1EB43B4A2BAD338ED5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +155,8 @@
 				BB5BCE8219C7D25000835E1C /* UDVenueFinderTableViewController.m */,
 				BB5BCE8D19C7E8CB00835E1C /* UDVenueTableViewController.h */,
 				BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */,
+				BB5BCE9919CBCC9800835E1C /* UDUserDataStore.h */,
+				BB5BCE9A19CBCC9800835E1C /* UDUserDataStore.m */,
 			);
 			path = Undrunk;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				BB5BCE9819CBBB3700835E1C /* UDCredentialStore.m in Sources */,
 				BB5BCE8F19C7E8CB00835E1C /* UDVenueTableViewController.m in Sources */,
 				BB5BCE8919C7D4E100835E1C /* UDFoursquareClient.m in Sources */,
+				BB5BCE9B19CBCC9800835E1C /* UDUserDataStore.m in Sources */,
 				BB5BCE8319C7D25000835E1C /* UDVenueFinderTableViewController.m in Sources */,
 				BB5BCE5419C7CF2A00835E1C /* main.m in Sources */,
 				BB5BCE5819C7CF2A00835E1C /* UDAppDelegate.m in Sources */,

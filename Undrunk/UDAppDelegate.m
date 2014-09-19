@@ -10,13 +10,15 @@
 #import "UDFoursquareClient.h"
 #import "UDUntappdClient.h"
 #import "UDCredentialStore.h"
+#import "UDUserDataStore.h"
 
 @implementation UDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    [[[UDCredentialStore alloc] init] clearSavedCredentials];
+    NSLog(@"saved beers count: %d", [[[UDUserDataStore sharedStore] beersForCurrentUser] count]);
     [self configureClients];
-//    [self fetchUserBeersAsync];
     return YES;
 }
 
@@ -29,12 +31,6 @@
     [UDUntappdClient client].clientSecret = configuration[@"UNTAPPD_CLIENT_SECRET"];
 }
 
-- (void)fetchUserBeersAsync {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSArray *beers = [[UDUntappdClient client] uniqueBeersForUser:@"jimmyburdette"];
-        NSLog(@"got %d beers for jimmy", [beers count]);
-    });
-}
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     NSLog(@"opened app from url: %@", url);
     NSString *urlString = [url absoluteString];
@@ -46,9 +42,20 @@
         NSLog(@"authenticate with token: %@", token);
         [[[UDCredentialStore alloc] init] setAuthToken:token];
         NSLog(@"token is now: %@", [[[UDCredentialStore alloc] init] authToken]);
+        [[UDUserDataStore sharedStore] refreshBeersForCurrentUser];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"com.WoracesWorkshop.Undrunk.UserAuthenticated" object:nil];
     }
     return  YES;
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    NSLog(@"will resign active");
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    NSLog(@"entered background!");
+    [[UDUserDataStore sharedStore] saveChanges];
 }
 
 @end

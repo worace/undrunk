@@ -51,22 +51,21 @@
     }
 }
 
-- (NSArray *)uniqueBeersForUser:(NSString *)userName {
-    NSLog(@"will fetch user beers from url %@", [self queryURLForUserDistinctBeers:userName withOffset:0]);
+- (NSArray *)uniqueBeersForUser:(NSString *)authToken {
+    NSLog(@"will fetch user beers from url %@", [self queryURLForUserDistinctBeers:authToken withOffset:0]);
     NSMutableArray *beers = [[NSMutableArray alloc] init];
     BOOL reachedEnd = NO;
     int iteration = 0;
 
     while (!reachedEnd) {
-        NSURL *url = [self queryURLForUserDistinctBeers:userName withOffset:(iteration*25)];
-        NSLog(@"fetching beers for jimmy on iteration %d wiht URL %@", iteration, url);
+        NSURL *url = [self queryURLForUserDistinctBeers:authToken withOffset:(iteration*25)];
+        NSLog(@"fetching beers on iteration %d with URL %@", iteration, url);
         NSDictionary *data = [self fetchURLFromUntappdApi:url];
         NSArray *newBeers;
         if (([data count] > 0) && ([data[@"response"] count] > 0)) newBeers = data[@"response"][@"beers"][@"items"];
         [beers addObjectsFromArray:newBeers];
         NSLog(@"adding %d newBeers", [newBeers count]);
         if ([newBeers count] < 25) reachedEnd = YES;
-//        if (iteration > 5) reachedEnd = YES;
         iteration ++;
     }
     return [beers copy];
@@ -120,8 +119,8 @@
     }
 }
 
-- (NSURL *)queryURLForUserDistinctBeers:(NSString *)username withOffset:(int)offset {
-    NSString *url = [NSString stringWithFormat:@"%@/user/beers/%@?client_id=%@&client_secret=%@&offset=%d", [self untappdURLBase], username, self.clientID, self.clientSecret, offset];
+- (NSURL *)queryURLForUserDistinctBeers:(NSString *)authToken withOffset:(int)offset {
+    NSString *url = [NSString stringWithFormat:@"%@/user/beers?access_token=%@&offset=%d", [self untappdURLBase], authToken, offset];
     return  [NSURL URLWithString:url];
 }
 
