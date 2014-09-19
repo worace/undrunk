@@ -9,6 +9,7 @@
 #import "UDVenueTableViewController.h"
 #import "UDUntappdClient.h"
 #import "SVProgressHUD.h"
+#import "UDUserDataStore.h"
 
 @interface UDVenueTableViewController ()
 @property (nonatomic, strong)NSDictionary *untappdVenue;
@@ -58,5 +59,25 @@
 - (void)loadVenueBeers {
     self.untappdVenue = [[UDUntappdClient client] untappdVenueForFoursquareID:self.foursquareVenue[@"id"]];
     self.venueBeers = [[UDUntappdClient client] recentBeersForUntappdVenue:self.untappdVenue[@"venue_id"]];
+    NSLog(@"got %d beers for venue %@", [self.venueBeers count], self.untappdVenue);
+    NSLog(@"have %d user beers", [[[UDUserDataStore sharedStore] beersForCurrentUser] count]);
+    NSSet *uniques = [[NSSet alloc] initWithArray:[self.venueBeers arrayByAddingObjectsFromArray:[[UDUserDataStore sharedStore] beersForCurrentUser]]];
+    NSLog(@"uniques count %d", [uniques count]);
+    
+    NSMutableArray *venueIds = [[NSMutableArray alloc] init];
+    NSMutableArray *userIds = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *beer in self.venueBeers) {
+        [venueIds addObject:beer[@"bid"]];
+    }
+    for (NSDictionary *beer in [[UDUserDataStore sharedStore] beersForCurrentUser]) {
+        [userIds addObject:beer[@"bid"]];
+    }
+    NSMutableArray *new = [venueIds mutableCopy];
+    [new addObjectsFromArray:userIds];
+    NSSet *uniquesById = [[NSSet alloc] initWithArray:new];
+    NSLog(@"uniques count by id %d", [uniquesById count]);
+
+
 }
 @end

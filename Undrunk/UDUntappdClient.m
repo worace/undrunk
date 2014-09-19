@@ -53,7 +53,7 @@
 
 - (NSArray *)uniqueBeersForUser:(NSString *)authToken {
     NSLog(@"will fetch user beers from url %@", [self queryURLForUserDistinctBeers:authToken withOffset:0]);
-    NSMutableArray *beers = [[NSMutableArray alloc] init];
+    NSMutableArray *checkins = [[NSMutableArray alloc] init];
     BOOL reachedEnd = NO;
     int iteration = 0;
 
@@ -61,12 +61,17 @@
         NSURL *url = [self queryURLForUserDistinctBeers:authToken withOffset:(iteration*25)];
         NSLog(@"fetching beers on iteration %d with URL %@", iteration, url);
         NSDictionary *data = [self fetchURLFromUntappdApi:url];
-        NSArray *newBeers;
-        if (([data count] > 0) && ([data[@"response"] count] > 0)) newBeers = data[@"response"][@"beers"][@"items"];
-        [beers addObjectsFromArray:newBeers];
-        NSLog(@"adding %d newBeers", [newBeers count]);
-        if ([newBeers count] < 25) reachedEnd = YES;
+        NSArray *newCheckins;
+        if (([data count] > 0) && ([data[@"response"] count] > 0)) newCheckins = data[@"response"][@"beers"][@"items"];
+        [checkins addObjectsFromArray:newCheckins];
+        NSLog(@"adding %d newBeers", [newCheckins count]);
+        if ([newCheckins count] < 25) reachedEnd = YES;
         iteration ++;
+    }
+    
+    NSMutableArray *beers = [[NSMutableArray alloc] init];
+    for (NSDictionary *checkin in checkins) {
+        [beers addObject:checkin[@"beer"]];
     }
     return [beers copy];
 }
@@ -77,7 +82,7 @@
     int count = 0;
     NSMutableArray *checkins = [[NSMutableArray alloc] init];
     
-    while (count < 4) {
+    while (count < 3) {
         if ([checkins count] > 0) {
             NSDictionary *lastCheckin = [checkins lastObject];
             NSDictionary *data = [self fetchURLFromUntappdApi:[self queryURLForUntappdVenueFeed:venueID withMaxID:lastCheckin[@"checkin_id"]]];
