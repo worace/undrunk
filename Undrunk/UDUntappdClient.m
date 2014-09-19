@@ -63,11 +63,10 @@
         NSDictionary *data = [self fetchURLFromUntappdApi:url];
         NSArray *newBeers;
         if (([data count] > 0) && ([data[@"response"] count] > 0)) newBeers = data[@"response"][@"beers"][@"items"];
-        NSLog(@" new beers! %@", newBeers);
         [beers addObjectsFromArray:newBeers];
         NSLog(@"adding %d newBeers", [newBeers count]);
         if ([newBeers count] < 25) reachedEnd = YES;
-        if (iteration > 5) reachedEnd = YES;
+//        if (iteration > 5) reachedEnd = YES;
         iteration ++;
     }
     return [beers copy];

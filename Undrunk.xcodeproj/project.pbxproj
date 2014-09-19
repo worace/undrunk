@@ -28,6 +28,7 @@
 		BB5BCE8919C7D4E100835E1C /* UDFoursquareClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8819C7D4E100835E1C /* UDFoursquareClient.m */; };
 		BB5BCE8C19C7E7D000835E1C /* UDUntappdClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */; };
 		BB5BCE8F19C7E8CB00835E1C /* UDVenueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */; };
+		BB5BCE9819CBBB3700835E1C /* UDCredentialStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5BCE9719CBBB3700835E1C /* UDCredentialStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDUntappdClient.m; sourceTree = "<group>"; };
 		BB5BCE8D19C7E8CB00835E1C /* UDVenueTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDVenueTableViewController.h; sourceTree = "<group>"; };
 		BB5BCE8E19C7E8CB00835E1C /* UDVenueTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDVenueTableViewController.m; sourceTree = "<group>"; };
+		BB5BCE9619CBBB3700835E1C /* UDCredentialStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDCredentialStore.h; sourceTree = "<group>"; };
+		BB5BCE9719CBBB3700835E1C /* UDCredentialStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDCredentialStore.m; sourceTree = "<group>"; };
 		FF398B1EB43B4A2BAD338ED5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +137,8 @@
 		BB5BCE4D19C7CF2A00835E1C /* Undrunk */ = {
 			isa = PBXGroup;
 			children = (
+				BB5BCE9619CBBB3700835E1C /* UDCredentialStore.h */,
+				BB5BCE9719CBBB3700835E1C /* UDCredentialStore.m */,
 				BB5BCE8A19C7E7D000835E1C /* UDUntappdClient.h */,
 				BB5BCE8B19C7E7D000835E1C /* UDUntappdClient.m */,
 				BB5BCE8719C7D4E100835E1C /* UDFoursquareClient.h */,
@@ -317,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5BCE9819CBBB3700835E1C /* UDCredentialStore.m in Sources */,
 				BB5BCE8F19C7E8CB00835E1C /* UDVenueTableViewController.m in Sources */,
 				BB5BCE8919C7D4E100835E1C /* UDFoursquareClient.m in Sources */,
 				BB5BCE8319C7D25000835E1C /* UDVenueFinderTableViewController.m in Sources */,

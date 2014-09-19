@@ -11,9 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "UDFoursquareClient.h"
 #import "UDVenueTableViewController.h"
+#import "UDCredentialStore.h"
 
 @interface UDVenueFinderTableViewController ()
 @property (nonatomic, strong) NSArray *venues;
+@property (nonatomic, strong) UDCredentialStore *credentialStore;
+@property (nonatomic, strong) UIViewController *loginModal;
 @end
 
 @implementation UDVenueFinderTableViewController
@@ -23,13 +26,14 @@
     self = [super initWithStyle:style];
     if (self) {
         self.venues = @[];
-//        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"defaultCell"];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    self.credentialStore = [[UDCredentialStore alloc] init];
+    [self requireLogin];
     NSLog(@"hi there");
     [super viewDidLoad];
     [SVProgressHUD show];
@@ -41,6 +45,27 @@
             [SVProgressHUD dismiss];
         });
     });
+}
+
+- (void)requireLogin {
+    NSLog(@"token is now: %@", [[[UDCredentialStore alloc] init] authToken]);
+    NSLog(@"store %@", self.credentialStore);
+    if (![self.credentialStore isLoggedIn]) {
+        NSLog(@"not logged in!");
+        UIWebView *webView = [[UIWebView alloc] init];
+        NSURLRequest *untappd = [[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"https://untappd.com/oauth/authenticate/?client_id=EAEFF1E766047A9B5859E28E902523CAC9AC23E0&response_type=token&redirect_url=com.WoracesWorkshop.Undrunk%3A%2F%2Fauthenticate"]];
+        [webView loadRequest:untappd];
+        
+        self.loginModal = [[UIViewController alloc] init];
+        self.loginModal.view = webView;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearLoginModal) name:@"com.WoracesWorkshop.Undrunk.UserAuthenticated" object:nil];
+        [self.navigationController pushViewController:self.loginModal animated:YES];
+    }
+}
+
+- (void)clearLoginModal {
+    NSLog(@"clear login modal, got notif");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)loadVenues {
