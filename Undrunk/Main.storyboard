@@ -31,7 +31,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Nearby Venues" id="1PF-yh-e2a">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="koG-wX-8je"/>
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="koG-wX-8je">
+                            <connections>
+                                <action selector="logOut:" destination="6gc-gW-eZT" id="PI9-zj-SKw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdo-PB-5Qx" userLabel="First Responder" sceneMemberID="firstResponder"/>

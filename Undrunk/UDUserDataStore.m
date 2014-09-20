@@ -74,7 +74,7 @@
 }
 
 - (BOOL)saveChanges {
-    NSLog(@"save changes for user data: %@", self.userData);
+    NSLog(@"save changes for user data with keys: %@", [self.userData allKeys]);
     NSString *path = [self itemArchivePath];
     return [NSKeyedArchiver archiveRootObject:self.userData toFile:path];
 }

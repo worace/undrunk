@@ -82,7 +82,7 @@
     int count = 0;
     NSMutableArray *checkins = [[NSMutableArray alloc] init];
     
-    while (count < 3) {
+    while (count < 2) {
         if ([checkins count] > 0) {
             NSDictionary *lastCheckin = [checkins lastObject];
             NSDictionary *data = [self fetchURLFromUntappdApi:[self queryURLForUntappdVenueFeed:venueID withMaxID:lastCheckin[@"checkin_id"]]];

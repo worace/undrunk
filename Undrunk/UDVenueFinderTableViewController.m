@@ -30,11 +30,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@" venue finder will appear");
+    [self requireLogin];
+}
+
 - (void)viewDidLoad
 {
     self.credentialStore = [[UDCredentialStore alloc] init];
-    [self requireLogin];
-    NSLog(@"hi there");
     [super viewDidLoad];
     [SVProgressHUD show];
 
@@ -106,4 +110,9 @@
     }
 }
 
+- (IBAction)logOut:(id)sender {
+    [[[UDCredentialStore alloc] init] clearSavedCredentials];
+    [self requireLogin];
+    NSLog(@"log out from venue list");
+}
 @end

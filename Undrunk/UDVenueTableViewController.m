@@ -15,6 +15,7 @@
 @interface UDVenueTableViewController ()
 @property (nonatomic, strong)NSDictionary *untappdVenue;
 @property (nonatomic, strong)NSArray *venueBeers;
+@property (nonatomic, strong)NSArray *untriedBeers;
 @end
 
 @implementation UDVenueTableViewController
@@ -48,36 +49,57 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.venueBeers count];
+    return [self.untriedBeers count];
+}
+
+- (NSArray *)calculateUntriedBeers {
+    NSLog(@"got %d venue beers %@", [self.venueBeers count], self.untappdVenue);
+    NSLog(@"have %d user beers", [[self userBeers] count]);
+
+    NSMutableArray *venueIds = [[NSMutableArray alloc] init];
+    NSMutableArray *userIds = [[NSMutableArray alloc] init];
+
+    for (NSDictionary *beer in self.venueBeers) {
+        [venueIds addObject:beer[@"bid"]];
+    }
+    for (NSDictionary *beer in [self userBeers]) {
+        [userIds addObject:beer[@"bid"]];
+    }
+
+    NSMutableArray *venueIdsWithoutUser = [venueIds mutableCopy];
+    [venueIdsWithoutUser removeObjectsInArray:userIds];
+
+    NSMutableArray *untried = [[NSMutableArray alloc] init];
+    for (NSDictionary *venueBeer in self.venueBeers) {
+        if ([venueIdsWithoutUser containsObject:venueBeer[@"bid"]]) {
+            [untried addObject:venueBeer];
+        }
+    }
+    NSLog(@"going to return %d untried beers", [untried count]);
+    
+//    NSMutableArray *removed=  [self.venueBeers mutableCopy];
+//    [removed removeObjectsInArray:untried];
+//    NSLog(@"removed beers were: %@", removed);
+    
+    return [untried copy];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.venueBeers objectAtIndex:indexPath.row][@"beer_name"];
+    cell.textLabel.text = [[self untriedBeers] objectAtIndex:indexPath.row][@"beer_name"];
     return cell;
+}
+
+- (NSArray *)userBeers {
+    return [[UDUserDataStore sharedStore] beersForCurrentUser];
 }
 
 - (void)loadVenueBeers {
     self.untappdVenue = [[UDUntappdClient client] untappdVenueForFoursquareID:self.foursquareVenue[@"id"]];
     self.venueBeers = [[UDUntappdClient client] recentBeersForUntappdVenue:self.untappdVenue[@"venue_id"]];
+    self.untriedBeers = [[self calculateUntriedBeers] copy];
     NSLog(@"got %d beers for venue %@", [self.venueBeers count], self.untappdVenue);
-    NSLog(@"have %d user beers", [[[UDUserDataStore sharedStore] beersForCurrentUser] count]);
-    NSSet *uniques = [[NSSet alloc] initWithArray:[self.venueBeers arrayByAddingObjectsFromArray:[[UDUserDataStore sharedStore] beersForCurrentUser]]];
-    NSLog(@"uniques count %d", [uniques count]);
     
-    NSMutableArray *venueIds = [[NSMutableArray alloc] init];
-    NSMutableArray *userIds = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *beer in self.venueBeers) {
-        [venueIds addObject:beer[@"bid"]];
-    }
-    for (NSDictionary *beer in [[UDUserDataStore sharedStore] beersForCurrentUser]) {
-        [userIds addObject:beer[@"bid"]];
-    }
-    NSMutableArray *new = [venueIds mutableCopy];
-    [new addObjectsFromArray:userIds];
-    NSSet *uniquesById = [[NSSet alloc] initWithArray:new];
-    NSLog(@"uniques count by id %d", [uniquesById count]);
 }
 
 - (IBAction)logOut:(id)sender {
